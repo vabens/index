@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Go Live SAP S/4 Hana</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0a3d91;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      text-align: center;
+      background: #114bb1;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    .message {
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Go Live SAP S/4 Hana</h1>
+  <div class="message" id="message"></div>
+</div>
+
+<script>
+  const goLiveDate = new Date("2026-04-10");
+  const today = new Date();
+
+  // Zera horas pra evitar erro de timezone
+  today.setHours(0,0,0,0);
+  goLiveDate.setHours(0,0,0,0);
+
+  const diffTime = goLiveDate - today;
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  function getMessage(days) {
+    if (days > 1) {
+      return `Faltam ${days} dias para o Go Live do SAP S/4 Hana.`;
+    } else if (days === 1) {
+      return "Falta 1 dia para o Go Live do SAP S/4 Hana.";
+    } else if (days === 0) {
+      return "É hoje - Go live do SAP S/4 Hana!";
+    } else {
+      return "Go live do SAP S/4 Hana realizado!";
+    }
+  }
+
+  document.getElementById("message").innerText = getMessage(diffDays);
+</script>
+
+</body>
+</html>
